@@ -8,5 +8,6 @@ output: html_document
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = TRUE)
 ```
+[Week 3 Homework](Homework3.html)
 
-Week 1 Homework [HW1 Link](HW1.html)
+[Week 4 Homework](Homework4.html)

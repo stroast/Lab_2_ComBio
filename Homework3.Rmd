@@ -1,0 +1,65 @@
+---
+title: "Homework3"
+author: "Sam Troast"
+date: "2025-02-05"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+**Question 1**
+```
+Find: \s{2,}  
+Replace:,
+```
+This expression allows us to find places where there are more than 2 consecutive spaces and replace them with a comma.
+
+**Question 2**
+```
+Find: ([A-Za-z]+),\s([A-Za]+),\s(.*)  
+Replace: \2 \1 \(\3)
+```
+This expression says to find any character until you hit a space, find the next word of any character and put parenthesis around the last word.
+
+**Question 3**
+```
+Find:(\d{4}) .+?\.mp3)  
+Replace:\1\n
+```
+This expression tells us to go until you see a word with .mp3 and then add a line break after it.
+
+**Question 4**
+```
+Find: (\d{4})(.+?\.mp3)  
+Replace: \2_ \1
+```
+This expression places the 4 digit numbers after the words with an underscore.
+
+**Question 5**
+```
+Find:(\w)(\w+),(\w+),[^,]+,([^,]+)    
+Replace:\1_\3,\4
+```
+This expression allowed us to reduce the first word to just the letter and underscore and remove the 2nd word.
+
+**Question 6**
+```
+Find:(\w)(\w+),(.{4})\w+,[^,]+,([^,]+)   
+Replace:\1_\3,\4
+```
+This expression allows us to further reduce the species names, specifically saying to keep 4 of the letters in 3rd set of characters.
+
+**Question 7**
+```
+Find:(\w{3})\w+,(\w{3})\w+,(\d.+),(\d+)   
+Replace:\1\2, \4, \3 
+```
+This expression allows us to combine the first 3 letter of each of the species names and adds spaces between the commas. 
+
+**Question 8**
+```
+In the "pathogen_binary" column, I would expect to see 1s and 0s. These are the only two options for binary data and therefore, the NAs should not be included in analysis.
+
+The regular expression [^a-zA-Z0-9\s\n\r] can be used to edit both the "bombus_sp" and "host_plant" columns. I entered these columns, individually, into Notepad++ and ran this to remove all special characters, excluding letters until you hit a space and then do a line return. 
+```

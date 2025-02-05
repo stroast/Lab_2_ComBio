@@ -11,9 +11,9 @@
 
 <meta name="author" content="Sam Troast" />
 
-<meta name="date" content="2025-01-22" />
+<meta name="date" content="2025-02-05" />
 
-<title>homework_links</title>
+<title>Homework4</title>
 
 <script src="site_libs/header-attrs-2.29/header-attrs.js"></script>
 <script src="site_libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
@@ -341,15 +341,95 @@ div.tocify {
 
 
 
-<h1 class="title toc-ignore">homework_links</h1>
+<h1 class="title toc-ignore">Homework4</h1>
 <h4 class="author">Sam Troast</h4>
-<h4 class="date">2025-01-22</h4>
+<h4 class="date">2025-02-05</h4>
 
 </div>
 
 
-<p><a href="Homework3.html">Week 3 Homework</a></p>
-<p><a href="Homework4.html">Week 4 Homework</a></p>
+<p><strong>Question 1</strong></p>
+<pre class="r"><code>x &lt;- 1.1
+a &lt;- 2.2
+b &lt;- 3.3
+
+# A
+z &lt;- (x)^(a)^(b)
+print(z)</code></pre>
+<pre><code>## [1] 3.61714</code></pre>
+<pre class="r"><code># B
+z &lt;- (x^a)^(b)
+print(z)</code></pre>
+<pre><code>## [1] 1.997611</code></pre>
+<pre class="r"><code># C
+z &lt;- 3*(x^3)+2*(x^2)+1
+print(z)</code></pre>
+<pre><code>## [1] 7.413</code></pre>
+<p><strong>Question 2</strong></p>
+<pre class="r"><code># A
+a &lt;- c(seq(1:8), (7:1))
+print(a)</code></pre>
+<pre><code>##  [1] 1 2 3 4 5 6 7 8 7 6 5 4 3 2 1</code></pre>
+<pre class="r"><code># B
+my_vec &lt;- seq(1:5)
+b &lt;- rep(x=my_vec, times=my_vec)
+print(b)</code></pre>
+<pre><code>##  [1] 1 2 2 3 3 3 4 4 4 4 5 5 5 5 5</code></pre>
+<pre class="r"><code># C
+my_vec &lt;- c(5:1)
+my_vec1 &lt;- c(1:5)
+c &lt;- rep(x=my_vec, times=my_vec1)
+print(c)</code></pre>
+<pre><code>##  [1] 5 4 4 3 3 3 2 2 2 2 1 1 1 1 1</code></pre>
+<p><strong>Question 3</strong></p>
+<pre class="r"><code>x &lt;- runif(1)
+y &lt;- runif(1)
+r &lt;- tan(y/x)
+print(r)</code></pre>
+<pre><code>## [1] 1.654373</code></pre>
+<pre class="r"><code>theta &lt;- asin(y/r)
+print(theta)</code></pre>
+<pre><code>## [1] 0.5143366</code></pre>
+<pre class="r"><code>polar &lt;- c(r, theta)
+print(polar)</code></pre>
+<pre><code>## [1] 1.6543730 0.5143366</code></pre>
+<p><strong>Question 4</strong></p>
+<pre class="r"><code>queue &lt;- c(&quot;sheep&quot;, &quot;fox&quot;, &quot;owl&quot;, &quot;ant&quot;)
+
+# A 
+queueA &lt;- c(queue, &quot;serpent&quot;)
+print(queueA)</code></pre>
+<pre><code>## [1] &quot;sheep&quot;   &quot;fox&quot;     &quot;owl&quot;     &quot;ant&quot;     &quot;serpent&quot;</code></pre>
+<pre class="r"><code># B
+queueB &lt;- queueA[-1]
+print(queueB)</code></pre>
+<pre><code>## [1] &quot;fox&quot;     &quot;owl&quot;     &quot;ant&quot;     &quot;serpent&quot;</code></pre>
+<pre class="r"><code># C
+queueC &lt;- c(&quot;donkey&quot;, queueB)
+print(queueC)</code></pre>
+<pre><code>## [1] &quot;donkey&quot;  &quot;fox&quot;     &quot;owl&quot;     &quot;ant&quot;     &quot;serpent&quot;</code></pre>
+<pre class="r"><code># D
+queueD &lt;- queueC[-5]
+print(queueD)</code></pre>
+<pre><code>## [1] &quot;donkey&quot; &quot;fox&quot;    &quot;owl&quot;    &quot;ant&quot;</code></pre>
+<pre class="r"><code># E
+queueE &lt;- queueD[-3]
+print(queueE)</code></pre>
+<pre><code>## [1] &quot;donkey&quot; &quot;fox&quot;    &quot;ant&quot;</code></pre>
+<pre class="r"><code># F
+queueF &lt;- c(queueE[2], &quot;aphid&quot;, queueE[3])
+print(queueF)</code></pre>
+<pre><code>## [1] &quot;fox&quot;   &quot;aphid&quot; &quot;ant&quot;</code></pre>
+<pre class="r"><code># G 
+aphid &lt;- which(queueF == &quot;aphid&quot;)
+print(aphid)</code></pre>
+<pre><code>## [1] 2</code></pre>
+<p><strong>Question 5</strong></p>
+<pre class="r"><code>numbers &lt;- 1:100
+my_vec &lt;- numbers[!(numbers %% 2 == 0 | numbers %% 3 == 0 | numbers %% 7 == 0)]
+print(my_vec)</code></pre>
+<pre><code>##  [1]  1  5 11 13 17 19 23 25 29 31 37 41 43 47 53 55 59 61 65 67 71 73 79 83 85
+## [26] 89 95 97</code></pre>
 
 
 

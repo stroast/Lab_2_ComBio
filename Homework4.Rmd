@@ -1,0 +1,99 @@
+---
+title: "Homework4"
+author: "Sam Troast"
+date: "2025-02-05"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+**Question 1**
+```{r}
+x <- 1.1
+a <- 2.2
+b <- 3.3
+
+# A
+z <- (x)^(a)^(b)
+print(z)
+
+# B
+z <- (x^a)^(b)
+print(z)
+
+# C
+z <- 3*(x^3)+2*(x^2)+1
+print(z)
+```
+**Question 2**
+```{r}
+# A
+a <- c(seq(1:8), (7:1))
+print(a)
+
+# B
+my_vec <- seq(1:5)
+b <- rep(x=my_vec, times=my_vec)
+print(b)
+
+# C
+my_vec <- c(5:1)
+my_vec1 <- c(1:5)
+c <- rep(x=my_vec, times=my_vec1)
+print(c)
+```
+**Question 3**
+```{r}
+x <- runif(1)
+y <- runif(1)
+r <- tan(y/x)
+print(r)
+theta <- asin(y/r)
+print(theta)
+polar <- c(r, theta)
+print(polar)
+```
+**Question 4**
+```{r}
+queue <- c("sheep", "fox", "owl", "ant")
+
+# A 
+queueA <- c(queue, "serpent")
+print(queueA)
+
+# B
+queueB <- queueA[-1]
+print(queueB)
+
+# C
+queueC <- c("donkey", queueB)
+print(queueC)
+
+# D
+queueD <- queueC[-5]
+print(queueD)
+
+# E
+queueE <- queueD[-3]
+print(queueE)
+
+# F
+queueF <- c(queueE[2], "aphid", queueE[3])
+print(queueF)
+
+# G 
+aphid <- which(queueF == "aphid")
+print(aphid)
+```
+**Question 5**
+```{r}
+numbers <- 1:100
+my_vec <- numbers[!(numbers %% 2 == 0 | numbers %% 3 == 0 | numbers %% 7 == 0)]
+print(my_vec)
+```
+
+
+
+
