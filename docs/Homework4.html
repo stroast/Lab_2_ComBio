@@ -386,13 +386,14 @@ print(c)</code></pre>
 y &lt;- runif(1)
 r &lt;- tan(y/x)
 print(r)</code></pre>
-<pre><code>## [1] 1.654373</code></pre>
-<pre class="r"><code>theta &lt;- asin(y/r)
-print(theta)</code></pre>
-<pre><code>## [1] 0.5143366</code></pre>
+<pre><code>## [1] 0.4267884</code></pre>
+<pre class="r"><code>theta &lt;- asin(y/r)</code></pre>
+<pre><code>## Warning in asin(y/r): NaNs produced</code></pre>
+<pre class="r"><code>print(theta)</code></pre>
+<pre><code>## [1] NaN</code></pre>
 <pre class="r"><code>polar &lt;- c(r, theta)
 print(polar)</code></pre>
-<pre><code>## [1] 1.6543730 0.5143366</code></pre>
+<pre><code>## [1] 0.4267884       NaN</code></pre>
 <p><strong>Question 4</strong></p>
 <pre class="r"><code>queue &lt;- c(&quot;sheep&quot;, &quot;fox&quot;, &quot;owl&quot;, &quot;ant&quot;)
 
