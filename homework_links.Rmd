@@ -11,3 +11,5 @@ knitr::opts_chunk$set(echo = TRUE)
 [Week 3 Homework](Homework3.html)
 
 [Week 4 Homework](Homework4.html)
+
+[Week 5 Homework](Homework5.html)
