@@ -388,7 +388,9 @@ the species names and adds spaces between the commas.</p>
 <p><strong>Question 8</strong></p>
 <pre><code>In the &quot;pathogen_binary&quot; column, I would expect to see 1s and 0s. These are the only two options for binary data and therefore, the NAs should not be included in analysis.
 
-The regular expression [^a-zA-Z0-9\s\n\r] can be used to edit both the &quot;bombus_sp&quot; and &quot;host_plant&quot; columns. I entered these columns, individually, into Notepad++ and ran this to remove all special characters, excluding letters until you hit a space and then do a line return. </code></pre>
+The regular expression [^a-zA-Z0-9\s\n\r] can be used to edit both the &quot;bombus_sp&quot; and &quot;host_plant&quot; columns. I entered these columns, individually, into Notepad++ and ran this to remove all special characters, excluding letters until you hit a space and then do a line return. 
+
+The bee_caste has white spaces that need to be removed. All white space can be removed with ^[\s]+|[\s]+$ and replaced with &quot;&quot;</code></pre>
 
 
 

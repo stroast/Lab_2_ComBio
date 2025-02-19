@@ -62,4 +62,6 @@ This expression allows us to combine the first 3 letter of each of the species n
 In the "pathogen_binary" column, I would expect to see 1s and 0s. These are the only two options for binary data and therefore, the NAs should not be included in analysis.
 
 The regular expression [^a-zA-Z0-9\s\n\r] can be used to edit both the "bombus_sp" and "host_plant" columns. I entered these columns, individually, into Notepad++ and ran this to remove all special characters, excluding letters until you hit a space and then do a line return. 
+
+The bee_caste column has white spaces that need to be removed. All white space can be removed with ^[\s]+|[\s]+$ and replaced with ""
 ```
