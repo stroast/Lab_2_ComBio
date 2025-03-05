@@ -8,20 +8,21 @@ output: html_document
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = TRUE)
 ```
-
+```{r}
+library(tidyverse)
+```
 **Question 1**
 -
 ```{r}
-library(tidyverse)
 data(iris)
+view(iris)
 # The iris dataset has 150 observations and 5 variables.
 ```
 
 **Question 2**
 -
 ```{r}
-iris1 <- iris %>%
-  select(-(Petal.Length:Petal.Width)) %>%
+iris1 <- iris%>%
   filter(Species %in% c("virginica","versicolor"), Sepal.Length > 6.0, Sepal.Width > 2.5)
 
 view(iris1)
@@ -42,7 +43,7 @@ iris2 <- iris1 %>%
 -
 ```{r}
 iris3 <- iris2 %>%
-  arrange(iris2, by=Sepal.Length)
+  arrange(by=Sepal.Length)
 
 head(iris3)
 ```
@@ -51,7 +52,7 @@ head(iris3)
 -
 ```{r}
 iris4 <- iris3 %>%
-  mutate(iris3, Sepal.Area=Sepal.Length*Sepal.Width)
+  mutate(Sepal.Area=Sepal.Length*Sepal.Width)
 
 iris4
 ```
@@ -68,8 +69,9 @@ print(iris5)
 **Question 7**
 -
 ```{r}
-iris6 <- iris %>%
-  summarize(AvgSepalLength=mean(Sepal.Length), AvgSepalWidth=mean(Sepal.Width), SampleSize=n())
+iris6 <- iris4%>%
+  group_by(Species) %>%
+  summarize(Avg.Sepal.Length=mean(Sepal.Length),Avg.Sepal.Width=mean(Sepal.Width),Sample.Size=n())
 
 print(iris6)
 ```
@@ -77,9 +79,16 @@ print(iris6)
 **Question 8**
 -
 ```{r}
-# We used pipes for all previous questions.
-```
+irisFinal<- iris%>%
+  filter(Species %in% c("virginica","versicolor"), Sepal.Length > 6.0, Sepal.Width > 2.5)%>% 
+  select("Species","Sepal.Length","Sepal.Width")%>% 
+  arrange(by=Sepal.Length)%>% 
+  mutate(Sepal.Area=Sepal.Length*Sepal.Width)%>% 
+  group_by(Species) %>% 
+  summarize(Avg.Sepal.Length=mean(Sepal.Length),Avg.Sepal.Width=mean(Sepal.Width),Sample.Size=n()) 
 
+print(irisFinal)
+```
 **Question 9**
 -
 ```{r}

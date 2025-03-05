@@ -1,0 +1,120 @@
+---
+title: "Homework6"
+author: "Sam Troast"
+date: "2025-02-19"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+```{r}
+library(tidyverse)
+library(ggplot2)
+```
+**Question 1**
+-
+I will be simulating a lab experiment where eastern newts are held at different temperatures (Hot - 22C, Moderate - 18C, & Cool - 10C) to measure Bd load over time. I expect newts at higher temperatures will have lower Bd amounts at the end of the study.
+
+**Question 2**
+-
+Hot(22C): sample size = 100, mean = 250, sd = 10  
+Moderate(18C): sample size = 100,  mean = 300, sd = 10  
+Cool(10C): sample size = 100, mean = 100, sd = 12
+
+**Question 3**
+-
+```{r}
+nGroup <- 3 # number of groups
+nName <- c("Hot","Moderate","Cool") # names of groups
+nSize <- c(100,100,100) # number of observations in each group
+nMean <- c(250,300,100) # mean of each group
+nSD <- c(10,10,12) # standard deviation of each group
+
+ID <- 1:(sum(nSize)) # create id vector for each row
+Bd_load <- c(rnorm(n=nSize[1],mean=nMean[1],sd=nSD[1]),
+            rnorm(n=nSize[2],mean=nMean[2],sd=nSD[2]),
+            rnorm(n=nSize[3],mean=nMean[3],sd=nSD[3]))
+Temperature <- rep(nName,nSize)
+newtdata <- data.frame(ID,Temperature,Bd_load)
+newtdata
+```
+
+**Question 4**
+-
+```{r}
+newtdatamodel <- aov(Bd_load~Temperature, data=newtdata)
+print(newtdatamodel)
+summary(newtdatamodel)
+
+ggplot(data=newtdata,aes(x=Temperature,y=Bd_load,fill=Temperature)) + geom_boxplot() + scale_fill_manual(values= c("blue","red","green"))
+```
+**Question 5**
+-
+First run: F = 1417748, p = <2e-16  
+Second run: F = 196729, p = <2e-16  
+Third run: F = 214829, p = <2e-16 
+
+After rerunning my analysis several times with different random numbers, we can see that we consistently get a very large F-value and a very small p-value, indicating that there is quite a significant difference regardless of the input data. We do see some variation within both values across the different runs, however we consistently come up with the same conclusion: there is a significant difference in Bd loads between temperature groups.
+
+**Question 6**
+-
+```{r}
+results <- data.frame(sample_size = integer(),
+                      effect_size = numeric(),
+                      trait = character(),
+                      p_value = numeric())
+
+temps <- c("Hot", "Moderate", "Cool")
+
+for (n in seq(10, nrow(newtdata), by = 5)) {  # Increase sample size by 5 each iteration
+
+  # Randomly sample n observations
+  temp_data <- newtdata[sample(1:nrow(newtdata), n, replace = TRUE), ]
+  
+  # Fit the model on the sampled data
+  mod <- aov(Bd_load ~ Temperature, data = temp_data)
+  
+  # Extract coefficients and p-values for each level of the Temperature factor
+  for (temp in temps) {
+    # Check if the temperature level is a factor level
+    if (temp %in% levels(temp_data$Temperature)) {
+      # Extract the effect size (the coefficient) for the specific temperature level
+      effect_size <- coef(mod)[paste("Temperature", temp, sep = "")]
+      p_value <- summary(mod)[[1]]["Temperature", temp, 4]  # p-value for the temp
+      
+      # Store results
+      results <- rbind(results, data.frame(sample_size = n, 
+                                           trait = temp, 
+                                           effect_size = effect_size, 
+                                           p_value = p_value))
+    }
+  }
+}
+```
+
+**Question 7**
+-
+```{r}
+nGroup <- 3 # number of groups
+nName <- c("Hot","Moderate", "Cool") # names of groups
+nSize <- c(2,2,2) # number of observations in each group
+nMean <- c(250,500,100) # mean of each group
+nSD <- c(1.25,1.1,1.2) # standard deviation of each group
+
+ID <- 1:(sum(nSize)) # create id vector for each row
+Hatch_time <- c(rnorm(n=nSize[1],mean=nMean[1],sd=nSD[1]),
+            rnorm(n=nSize[2],mean=nMean[2],sd=nSD[2]),
+            rnorm(n=nSize[3],mean=nMean[3],sd=nSD[3]))
+Temperature <- rep(nName,nSize)
+newtdata <- data.frame(ID,Temperature,Bd_load)
+newtdataModel <- aov(Bd_load~Temperature,data=newtdata)
+z <- summary(newtdatamodel)
+list(Fval=unlist(z)[7],probF=unlist(z)[9])
+```
+
+After changing the sample sizes several times, reducing my sample sizes all the way down to 2 for each group still results in significant differences. As I decreased the sample size, my p-value increased until it became closer and closer to 0.05. This indicates that this study did not need such a large sample size to find a significant difference, however large sample sizes can often increase the robustness of statistical tests, as it does in this instance.
+
+**Question 8**
+-
+See text above.
