@@ -1,0 +1,220 @@
+---
+title: "Homework8"
+author: "Sam Troast"
+date: "2025-03-19"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+**Question 1**
+-
+```{r}
+library(ggplot2) # for graphics
+library(MASS) # for maximum likelihood estimation
+
+# quick and dirty, a truncated normal distribution to work on the solution set
+
+# read in data vector
+z <- rnorm(n=3000,mean=0.2)
+z <- data.frame(1:3000,z)
+names(z) <- list("ID","myVar")
+z <- z[z$myVar>0,]
+str(z)
+summary(z$myVar)
+
+# plot histogram of data 
+p1 <- ggplot(data=z, aes(x=myVar, y=..density..)) +
+  geom_histogram(color="grey60",fill="cornsilk", linewidth=0.2) 
+print(p1)
+
+# add empirical density curve
+p1 <-  p1 +  geom_density(linetype="dotted",size=0.75)
+print(p1)
+
+# get maximum likelihood parameters for normal
+normPars <- fitdistr(z$myVar,"normal")
+print(normPars)
+str(normPars)
+normPars$estimate["mean"] # note structure of getting a named attribute
+
+# plot normal probability density
+meanML <- normPars$estimate["mean"]
+sdML <- normPars$estimate["sd"]
+
+xval <- seq(0,max(z$myVar),len=length(z$myVar))
+
+ stat <- stat_function(aes(x = xval, y = ..y..), fun = dnorm, colour="red", n = length(z$myVar), args = list(mean = meanML, sd = sdML))
+ p1 + stat
+
+# plot exponential probability density
+expoPars <- fitdistr(z$myVar,"exponential")
+rateML <- expoPars$estimate["rate"]
+
+stat2 <- stat_function(aes(x = xval, y = ..y..), fun = dexp, colour="blue", n = length(z$myVar), args = list(rate=rateML))
+ p1 + stat + stat2
+
+# plot uniform probability density
+stat3 <- stat_function(aes(x = xval, y = ..y..), fun = dunif, colour="darkgreen", n = length(z$myVar), args = list(min=min(z$myVar), max=max(z$myVar)))
+ p1 + stat + stat2 + stat3
+
+# plot gamma probability density
+gammaPars <- fitdistr(z$myVar,"gamma")
+shapeML <- gammaPars$estimate["shape"]
+rateML <- gammaPars$estimate["rate"]
+
+stat4 <- stat_function(aes(x = xval, y = ..y..), fun = dgamma, colour="brown", n = length(z$myVar), args = list(shape=shapeML, rate=rateML))
+ p1 + stat + stat2 + stat3 + stat4
+
+# plot beta probability density
+pSpecial <- ggplot(data=z, aes(x=myVar/(max(myVar + 0.1)), y=..density..)) +
+  geom_histogram(color="grey60",fill="cornsilk",size=0.2) + 
+  xlim(c(0,1)) +
+  geom_density(size=0.75,linetype="dotted")
+
+betaPars <- fitdistr(x=z$myVar/max(z$myVar + 0.1),start=list(shape1=1,shape2=2),"beta")
+shape1ML <- betaPars$estimate["shape1"]
+shape2ML <- betaPars$estimate["shape2"]
+
+statSpecial <- stat_function(aes(x = xval, y = ..y..), fun = dbeta, colour="orchid", n = length(z$myVar), args = list(shape1=shape1ML,shape2=shape2ML))
+pSpecial + statSpecial
+```
+
+
+**Question 2**
+-
+
+```{r}
+library(tidyverse)
+
+z0 <- data.frame(starwars)
+z <- na.omit(starwars)
+view(z)
+
+# plot histogram of data 
+p1 <- ggplot(data=z, aes(x=height, y=..density..)) +
+  geom_histogram(color="grey60",fill="cornsilk", linewidth=0.2) 
+print(p1)
+
+# add empirical density curve
+p1 <-  p1 +  geom_density(linetype="dotted",size=0.75)
+print(p1)
+
+# get maximum likelihood parameters for normal
+normPars <- fitdistr(z$height,"normal")
+print(normPars)
+str(normPars)
+normPars$estimate["mean"] # note structure of getting a named attribute
+
+# plot normal probability density
+meanML <- normPars$estimate["mean"]
+sdML <- normPars$estimate["sd"]
+
+xval <- seq(0,max(z$height),len=length(z$height))
+
+ stat <- stat_function(aes(x = xval, y = ..y..), fun = dnorm, colour="red", n = length(z$height), args = list(mean = meanML, sd = sdML))
+ p1 + stat
+
+ 
+# plot exponential probability density
+expoPars <- fitdistr(z$height,"exponential")
+rateML <- expoPars$estimate["rate"]
+
+stat2 <- stat_function(aes(x = xval, y = ..y..), fun = dexp, colour="blue", n = length(z$height), args = list(rate=rateML))
+ p1 + stat + stat2
+
+ 
+# plot uniform probability density
+stat3 <- stat_function(aes(x = xval, y = ..y..), fun = dunif, colour="darkgreen", n = length(z$height), args = list(min=min(z$height), max=max(z$height)))
+ p1 + stat + stat2 + stat3
+
+# plot gamma probability density
+gammaPars <- fitdistr(z$height,"gamma")
+shapeML <- gammaPars$estimate["shape"]
+rateML <- gammaPars$estimate["rate"]
+
+stat4 <- stat_function(aes(x = xval, y = ..y..), fun = dgamma, colour="brown", n = length(z$height), args = list(shape=shapeML, rate=rateML))
+ p1 + stat + stat2 + stat3 + stat4
+
+# plot beta probability density
+pSpecial <- ggplot(data=z, aes(x=height/(max(height + 0.1)), y=..density..)) +
+  geom_histogram(color="grey60",fill="cornsilk",size=0.2) + 
+  xlim(c(0,1)) +
+  geom_density(size=0.75,linetype="dotted")
+
+betaPars <- fitdistr(x=z$height/max(z$height + 0.1),start=list(shape1=1,shape2=2),"beta")
+shape1ML <- betaPars$estimate["shape1"]
+shape2ML <- betaPars$estimate["shape2"]
+
+statSpecial <- stat_function(aes(x = xval, y = ..y..), fun = dbeta, colour="orchid", n = length(z$height), args = list(shape1=shape1ML,shape2=shape2ML))
+pSpecial + statSpecial 
+```
+
+**Question 3**
+-
+```
+Find the best-fitting distribution for your data.
+
+The normal probability density curve was best fitting for the Starwars data we used. The beta curve actually fit most closely, but the normal probability density curve is more realistic than using something like a beta or uniform distribution, as these fix the upper bounds.
+```
+
+**Question 4**
+-
+```
+Simulate a new data set. Using the best-fitting distribution, go back to the code and get the maximum likelihood parameters. Use those to simulate a new data set, with the same length as your original vector, and plot that in a histogram and add the probability density curve. Right below that, generate a fresh histogram plot of the original data, and also include the probability density curve.
+```
+```{r}
+## Simulated Plot ##
+# read in data vector
+d <- rnorm(n=29,mean=178.66)
+d <- data.frame(1:29,d)
+names(d) <- list("ID","height")
+d <- d[d$height>0,]
+str(d)
+
+summary(d$height)
+
+# plot histogram of data 
+p1 <- ggplot(data=d, aes(x=height, y=..density..)) +
+  geom_histogram(color="grey60",fill="cornsilk", linewidth=0.2) 
+print(p1)
+
+# add empirical density curve
+p1 <-  p1 +  geom_density(linetype="dotted",size=0.75)
+print(p1)
+
+# get maximum likelihood parameters for normal
+normPars <- fitdistr(d$height,"normal")
+print(normPars)
+str(normPars)
+normPars$estimate["mean"] # note structure of getting a named attribute
+
+
+### Original Plot ###
+z0 <- data.frame(starwars)
+z <- na.omit(starwars)
+view(z)
+
+# plot histogram of data 
+p1 <- ggplot(data=z, aes(x=height, y=..density..)) +
+  geom_histogram(color="grey60",fill="cornsilk", linewidth=0.2) 
+print(p1)
+
+# add empirical density curve
+p1 <-  p1 +  geom_density(linetype="dotted",size=0.75)
+print(p1)
+
+# plot normal probability density
+meanML <- normPars$estimate["mean"]
+sdML <- normPars$estimate["sd"]
+
+xval <- seq(0,max(z$height),len=length(z$height))
+
+ stat <- stat_function(aes(x = xval, y = ..y..), fun = dnorm, colour="red", n = length(z$height), args = list(mean = meanML, sd = sdML))
+ p1 + stat
+```
+
+How do the two histogram profiles compare? Do you think the model is doing a good job of simulating realistic data that match your original measurements? Why or why not?
+
+The two histograms are very different because we used the rnorm function which will create random data every time it's run. We also have a very small data set (n=29) which makes it more difficult to notice variation.

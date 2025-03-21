@@ -17,3 +17,5 @@ knitr::opts_chunk$set(echo = TRUE)
 [Week 6 Homework](Homework6.html)
 
 [Week 7 Homework](Homework7.html)
+
+[Week 8 Homework](Homework8.html)
