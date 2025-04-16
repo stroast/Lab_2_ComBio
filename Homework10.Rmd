@@ -1,0 +1,100 @@
+---
+title: "Homework10"
+author: "Sam Troast"
+date: "2025-04-09"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+```{r}
+library(ggplot2)
+library(ggthemes)
+library(colorblindr)
+library(colorspace)
+library(wesanderson)
+library(ggsci)
+library(tidytuesdayR)
+library(waffle)
+library(pals)
+library(dplyr)
+```
+```{r}
+tuesdata <- tidytuesdayR::tt_load('2022-02-01')
+
+breed_traits <- tuesdata$breed_traits
+
+breed_traits <- breed_traits %>%
+  filter(Breed != "Plott Hounds")
+
+```
+**Plot 1**
+Waffle plot to look at variation in coat type among the dogs in the data set. 
+```{r}
+table_data <- as.data.frame(table(coat_type = breed_traits$`Coat Type`))
+
+waffleplot <- ggplot(data=table_data) +
+  aes(fill = coat_type, values = Freq) +
+  waffle::geom_waffle(n_rows = 10, size = 0.33, colour = "black") +
+  coord_equal() +
+  scale_fill_manual(values = wes_palette("Royal2")) +
+  theme() +
+  scale_fill_manual(values=c("red", "green", "blue", "yellow", "black", "pink", "orange", "purple", "brown", "white"))
+waffleplot
+```
+**Plot 2**
+Ridgeline plot to compare map dog breed coat type with how good they are with young children.
+```{r}
+d <- data.frame(breed=breed_traits$Breed, otherdogs=breed_traits$`Good With Other Dogs`, children=breed_traits$`Good With Young Children`, coat_type=breed_traits$`Coat Type`, bark=breed_traits$`Barking Level`)
+
+ridgeplot <- ggplot(data=d) +
+  aes(x=children, y=coat_type, fill=coat_type) +
+  ggridges::geom_density_ridges() +
+  ggridges::theme_ridges()
+ridgeplot
+```
+**Plot 3**
+Swarmplot to show coat type compared to how good the breed is with other dogs. 
+```{r}
+swarmplot <- ggplot(data=d) +
+  aes(x=coat_type,y=otherdogs,color=coat_type) +
+  ggbeeswarm::geom_beeswarm(method = "center",size=2)
+swarmplot
+```
+**Plot 4**
+Lollipop plot to look at hairless breeds and their ratings for Barking Level.
+```{r}
+# lollipop plot
+d <- data.frame(Breed=breed_traits$Breed, Coat_Type=breed_traits$`Coat Type`, Bark_Rating=breed_traits$`Barking Level`)
+
+edit_d <- d[d$Coat_Type=="Hairless",]
+
+Lollipop <- ggplot(data=edit_d) +
+  aes(x=Breed, y= Bark_Rating) +
+  geom_segment(aes(x=Breed,
+                   xend=Breed,
+                   y=0,
+                   yend=Bark_Rating),
+               color="grey",
+               linewidth=2) +
+  geom_point( color="orange", size=7) +
+  labs(title="Hairless Breeds and Their Bark Rating",
+       x="",
+       y="Bark Rating") +
+  coord_flip() + # flips axis
+  theme_light(base_size=20,base_family=
+                "Monaco") +
+  theme(
+    panel.grid.major.x = element_blank(),
+    panel.border = element_blank(),
+    axis.ticks.y = element_blank(),
+    plot.title.position = "plot",
+    plot.title = element_text(hjust = 0))
+Lollipop
+
+
+```
+
+
+```
