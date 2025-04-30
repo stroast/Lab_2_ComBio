@@ -1,0 +1,19 @@
+logfile: logfile.txt
+#######################
+R version: R version 4.4.2 (2024-10-31 ucrt)
+platform: x86_64-w64-mingw32/x64
+running: Windows 11 x64 (build 22631)
+#----------------------
+random number seed: -289615842
+timestamp: Wed Apr 30 13:46:51 2025
+#----------------------
+libraries loaded:
+devtools dplyr forcats ggplot2 lubridate pracma pryr purrr readr stringr tibble tidyr tidyverse upscaler usethis
+#######################
+INFO  [30-Apr 13:46:57] File names gathered
+INFO  [30-Apr 13:46:59] Initial data frame created
+INFO  [30-Apr 13:47:05] Data cleaned
+INFO  [30-Apr 13:47:10] Years extracted
+INFO  [30-Apr 13:47:26] Abundance calculated
+INFO  [30-Apr 13:47:28] Species richness calculated
+INFO  [30-Apr 13:47:28] Regression run

@@ -1,0 +1,16 @@
+# Table X. Table legend
+# 
+# timestamp: 30 April 2025 1:36:56 PM
+# ------------------------
+# 
+"year","file_name","abundance","species_richness"
+"Years saved as an RDS file","C:/Users/stroast/OneDrive - University of Vermont/Desktop/Lab_2_ComBio/Homework9/CleanData/NEON_count-landbird/NEON.D01.BART.DP1.10003.001.2015-06.basic.20250129T000730Z.RELEASE-2025/NEON.D01.BART.DP1.10003.001.brd_countdata.2015-06.basic.20241118T065914Z.csv",454,40
+"Years saved as an RDS file","C:/Users/stroast/OneDrive - University of Vermont/Desktop/Lab_2_ComBio/Homework9/CleanData/NEON_count-landbird/NEON.D01.BART.DP1.10003.001.2016-06.basic.20250129T000730Z.RELEASE-2025/NEON.D01.BART.DP1.10003.001.brd_countdata.2016-06.basic.20241118T142515Z.csv",684,38
+"Years saved as an RDS file","C:/Users/stroast/OneDrive - University of Vermont/Desktop/Lab_2_ComBio/Homework9/CleanData/NEON_count-landbird/NEON.D01.BART.DP1.10003.001.2017-06.basic.20250129T000730Z.RELEASE-2025/NEON.D01.BART.DP1.10003.001.brd_countdata.2017-06.basic.20241118T043125Z.csv",411,34
+"Years saved as an RDS file","C:/Users/stroast/OneDrive - University of Vermont/Desktop/Lab_2_ComBio/Homework9/CleanData/NEON_count-landbird/NEON.D01.BART.DP1.10003.001.2018-06.basic.20250129T000730Z.RELEASE-2025/NEON.D01.BART.DP1.10003.001.brd_countdata.2018-06.basic.20241118T105926Z.csv",512,36
+"Years saved as an RDS file","C:/Users/stroast/OneDrive - University of Vermont/Desktop/Lab_2_ComBio/Homework9/CleanData/NEON_count-landbird/NEON.D01.BART.DP1.10003.001.2019-06.basic.20250129T000730Z.RELEASE-2025/NEON.D01.BART.DP1.10003.001.brd_countdata.2019-06.basic.20241118T064156Z.csv",402,43
+"Years saved as an RDS file","C:/Users/stroast/OneDrive - University of Vermont/Desktop/Lab_2_ComBio/Homework9/CleanData/NEON_count-landbird/NEON.D01.BART.DP1.10003.001.2020-06.basic.20250129T000730Z.RELEASE-2025/NEON.D01.BART.DP1.10003.001.brd_countdata.2020-06.basic.20241118T184512Z.csv",471,45
+"Years saved as an RDS file","C:/Users/stroast/OneDrive - University of Vermont/Desktop/Lab_2_ComBio/Homework9/CleanData/NEON_count-landbird/NEON.D01.BART.DP1.10003.001.2020-07.basic.20250129T000730Z.RELEASE-2025/NEON.D01.BART.DP1.10003.001.brd_countdata.2020-07.basic.20241118T010504Z.csv",54,17
+"Years saved as an RDS file","C:/Users/stroast/OneDrive - University of Vermont/Desktop/Lab_2_ComBio/Homework9/CleanData/NEON_count-landbird/NEON.D01.BART.DP1.10003.001.2021-06.basic.20250129T000730Z.RELEASE-2025/NEON.D01.BART.DP1.10003.001.brd_countdata.2021-06.basic.20241118T105538Z.csv",906,49
+"Years saved as an RDS file","C:/Users/stroast/OneDrive - University of Vermont/Desktop/Lab_2_ComBio/Homework9/CleanData/NEON_count-landbird/NEON.D01.BART.DP1.10003.001.2022-06.basic.20250129T000730Z.RELEASE-2025/NEON.D01.BART.DP1.10003.001.brd_countdata.2022-06.basic.20241118T033934Z.csv",581,38
+"Years saved as an RDS file","C:/Users/stroast/OneDrive - University of Vermont/Desktop/Lab_2_ComBio/Homework9/CleanData/NEON_count-landbird/NEON.D01.BART.DP1.10003.001.2023-06.basic.20250129T000730Z.RELEASE-2025/NEON.D01.BART.DP1.10003.001.brd_countdata.2023-06.basic.20241118T091043Z.csv",513,41

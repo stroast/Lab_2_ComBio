@@ -1,0 +1,70 @@
+---
+title: "Homework9"
+author: "Sam Troast"
+date: "2025-03-26"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+```{r}
+library(devtools)
+library(usethis)
+library(upscaler)
+library(dplyr)
+```
+```
+Using for loops, iterate through each year’s folders to gather the file names of these “countdata” .csv files.
+```
+**Question 1**
+```{r}
+countdata <- list.files("C:/Users/stroast/OneDrive - University of Vermont/Desktop/Lab_2_ComBio/Homework9/Data/NEON_count-landbird")
+print(countdata)
+```
+**Question 2**
+```{r}
+filenames <- c()
+for (i in 1:10) {
+  setwd(paste0("C:/Users/stroast/OneDrive - University of Vermont/Desktop/Lab_2_ComBio/Homework9/Data/NEON_count-landbird", "/", countdata[i]))
+  filenames[i] <- list.files(pattern = "countdata")
+  }
+filenames  
+```
+**Question 3**
+```{r}
+# 1) Cleaning the data for any empty/missing cases
+remove_missing_rows <- function(countdata) {
+  cleaned_data <- na.omit(countdata)
+  return(cleaned_data)
+}
+
+# 2) Extract the year from each file name
+files <- list.files(path = "C:/Users/stroast/OneDrive - University of Vermont/Desktop/Lab_2_ComBio/Homework9/Data/NEON_count-landbird", 
+                    pattern = "\\.csv", full.names = TRUE)
+print(files)
+# Extract the year from each file name using regular expression
+years <- sub(".*_(\\d{4})\\.csv$", "\\1", files)
+
+# Print the extracted years
+print(years)
+
+# 3) Calculate Abundance for each year (Total number of individuals found)
+calculate_abundance <- function(countdata) {
+  # Summing the individuals by year
+  abundance_by_year <- countdata %>%
+    group_by(year) %>%
+    summarise(total_abundance = sum(individuals, na.rm = TRUE))
+}
+print(abundance_by_year)
+# 4) Calculate Species Richness for each year(Number of unique species found) 
+# 5) Run a simple regression model for Species Richness (S) vs. Abundance for every year
+# 6) Generate histograms for both Abundance and Species Richness (S) and store the plots
+
+```
+**Question 4**
+```{r}
+```
+**Question 5**
+```{r}
+```

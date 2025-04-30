@@ -1,0 +1,13 @@
+logfile: logfile.txt
+#######################
+R version: R version 4.4.2 (2024-10-31 ucrt)
+platform: x86_64-w64-mingw32/x64
+running: Windows 11 x64 (build 22631)
+#----------------------
+random number seed: -534149208
+timestamp: Wed Apr 23 17:48:25 2025
+#----------------------
+libraries loaded:
+devtools dplyr forcats ggplot2 lubridate pracma pryr purrr readr stringr tibble tidyr tidyverse upscaler usethis
+#######################
+INFO  [23-Apr 17:48:30] File names gathered

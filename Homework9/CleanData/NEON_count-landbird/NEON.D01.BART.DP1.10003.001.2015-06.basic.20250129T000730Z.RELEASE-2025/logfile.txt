@@ -1,0 +1,15 @@
+logfile: logfile.txt
+#######################
+R version: R version 4.4.2 (2024-10-31 ucrt)
+platform: x86_64-w64-mingw32/x64
+running: Windows 11 x64 (build 22631)
+#----------------------
+random number seed: -405564240
+timestamp: Wed Apr 16 14:39:02 2025
+#----------------------
+libraries loaded:
+colorblindr colorspace devtools dplyr forcats ggplot2 ggsci ggthemes lubridate pals pracma pryr purrr readr stringr tibble tidyr tidytuesdayR tidyverse upscaler usethis waffle wesanderson
+#######################
+INFO  [16-Apr 14:39:26] File names gathered
+INFO  [16-Apr 14:39:34] Initial data frame created
+INFO  [16-Apr 14:39:39] Data cleaned
